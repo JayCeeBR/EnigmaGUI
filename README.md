@@ -1,7 +1,11 @@
-# EnigmaGUI
+## Synopsis
+
 Engima M1 Machine Graphics
 
-#About
+##API Reference
 
 	*Python 3.5
 	*Tkinter
+
+## License
+	BSD License
