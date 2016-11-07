@@ -13,4 +13,4 @@ Feel free to make a pull request for fixes and improvements to current documenta
 '#sfsbr' IRC Channel on [Freenode](https://freenode.net)
 
 ## License
-	[BSD License](https://github.com/sfsbr/EnigmaGUI/blob/master/LICENSE)
+- [BSD License](https://github.com/sfsbr/EnigmaGUI/blob/master/LICENSE)
