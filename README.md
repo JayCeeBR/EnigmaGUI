@@ -6,6 +6,7 @@ Engima M1 Machine Graphics
 
 -	Python 3.5
 -	Tkinter
+- 	Sqlite3
 
 # Issues and Contributing
 
