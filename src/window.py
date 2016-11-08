@@ -9,6 +9,7 @@ class Window(object):
 		self.window.minsize(800,600)
 		self.window.maxsize(800,600)
 		self.window.title("Enigma")
+		self.window.resizable(0,0)
 
 		self.menubar = Menu(self.window)
 		self.settings = Menu(self.menubar, tearoff=0)
@@ -24,12 +25,36 @@ class Window(object):
 		self.window.mainloop()
 
 	def create_rotors(self):
-		pass
+		self.winrotor = Tk()
+		self.winrotor.minsize(400, 300)
+		self.winrotor.resizable(0,0)
+		self.winrotor.maxsize(400, 300)
+		self.winrotor.title("Configure Rotor")
+
+		self.frame = Frame(self.winrotor)
+		self.frame.pack(side=BOTTOM)
+
+		self.btnclose = Button(self.frame, text="Close", command=self.destroy_rotor)
+		self.btnclose.pack(side=LEFT, pady=5, padx=5)
+
+		self.btnsave = Button(self.frame, text="Save")
+		self.btnsave.pack(side=LEFT, pady=5, padx=5)
+
+		self.winrotor.mainloop()
 
 	def create_plugboard(self):
 		pass
 
 	def create_reflector(self):
+		pass
+
+	def destroy_rotor(self):
+		self.winrotor.destroy()
+
+	def destroy_plugboard(self):
+		pass
+
+	def destroy_reflector(self):
 		pass
 
 	def destroy(self):
