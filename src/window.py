@@ -26,13 +26,29 @@ class Window(object):
 
 	def create_rotors(self):
 		self.winrotor = Tk()
-		self.winrotor.minsize(400, 300)
+		self.winrotor.minsize(280, 180)
 		self.winrotor.resizable(0,0)
-		self.winrotor.maxsize(400, 300)
+		self.winrotor.maxsize(280, 180)
 		self.winrotor.title("Configure Rotor")
 
 		self.frame = Frame(self.winrotor)
 		self.frame.pack(side=BOTTOM)
+
+		self.topframe = Frame(self.winrotor)
+		self.topframe.pack(side=TOP)
+
+		self.labelrotor = Label(self.topframe, text="Rotor 1 ")
+		self.labelrotor.pack(side=TOP, pady=3)
+		self.idrotor1 = Entry(self.topframe, bd=3, width=10)
+		self.idrotor1.pack(side=TOP, padx=6)
+		self.labelrotor = Label(self.topframe, text="Rotor 2 ")
+		self.labelrotor.pack(side=TOP)
+		self.idrotor2 = Entry(self.topframe, bd=3, width=10)
+		self.idrotor2.pack(side=TOP, padx=6)
+		self.labelrotor = Label(self.topframe, text="Rotor 3 ")
+		self.labelrotor.pack(side=TOP)
+		self.idrotor3 = Entry(self.topframe, bd=3, width=10)
+		self.idrotor3.pack(side=TOP, padx=6)
 
 		self.btnclose = Button(self.frame, text="Close", command=self.destroy_rotor)
 		self.btnclose.pack(side=LEFT, pady=5, padx=5)
@@ -46,7 +62,31 @@ class Window(object):
 		pass
 
 	def create_reflector(self):
-		pass
+		self.winreflector = Tk()
+		self.winreflector.minsize(280, 100)
+		self.winreflector.resizable(0,0)
+		self.winreflector.maxsize(280, 100)
+		self.winreflector.title("Configure Reflector")
+
+		self.sideframe = Frame(self.winreflector)
+		self.sideframe.pack(side=TOP)
+		self.toolframe = Frame(self.winreflector)
+		self.toolframe.pack(side=BOTTOM)
+
+
+		self.labelreflec = Label(self.sideframe, text="Reflector")
+		self.labelreflec.pack(side=TOP)
+
+		self.reflector = Entry(self.sideframe, bd=3, width=10)
+		self.reflector.pack(side=TOP, padx=6)
+
+		self.btnclose = Button(self.toolframe, text="Close", command=self.destroy_reflector)
+		self.btnclose.pack(side=LEFT, pady=5, padx=5)
+		self.btnsave = Button(self.toolframe, text="Save")
+		self.btnsave.pack(side=LEFT, pady=5, padx=5)
+
+
+		self.winreflector.mainloop()
 
 	def destroy_rotor(self):
 		self.winrotor.destroy()
@@ -55,7 +95,7 @@ class Window(object):
 		pass
 
 	def destroy_reflector(self):
-		pass
+		self.winreflector.destroy()
 
 	def destroy(self):
 		self.window.destroy()
