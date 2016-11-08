@@ -5,9 +5,11 @@ class Database(object):
 	def __init__(self):
 		self.connection = sqlite3.connect('enigmadb.db')
 		self.cursor = self.connection.cursor()
-		query = 'CREATE TABLE IF NOT EXISTS rotors (id integer primary key, rotorid varchar(100),aphabety varchar(100))'
+		query = 'CREATE TABLE IF NOT EXISTS rotors (id integer primary key, rotorid varchar(100),base varchar(100))'
 		self.cursor.execute(str(query))
-
+		query = 'CREATE TABLE IF NOT EXISTS reflector (id integer primary key, reflectorid varchar(100),base varchar(100))'
+		self.cursor.execute(str(query))
+		
 	def execute(self, query):
 		try:
 			self.cursor.execute(str(query))
