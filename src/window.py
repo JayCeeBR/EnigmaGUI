@@ -1,5 +1,6 @@
 # -*- coding: latin1 -*-
 from tkinter import *
+from security import *
 
 
 class Window(object):
@@ -50,10 +51,15 @@ class Window(object):
 		self.idrotor3 = Entry(self.topframe, bd=3, width=10)
 		self.idrotor3.pack(side=TOP, padx=6)
 
+
+		self.idrotor1.insert(0, Security().get_rotors(1))
+		self.idrotor2.insert(0, Security().get_rotors(2))
+		self.idrotor3.insert(0, Security().get_rotors(3))
+
 		self.btnclose = Button(self.frame, text="Close", command=self.destroy_rotor)
 		self.btnclose.pack(side=LEFT, pady=5, padx=5)
 
-		self.btnsave = Button(self.frame, text="Save")
+		self.btnsave = Button(self.frame, text="Save", command=self.savebtn_rotors)
 		self.btnsave.pack(side=LEFT, pady=5, padx=5)
 
 		self.winrotor.mainloop()
@@ -80,9 +86,12 @@ class Window(object):
 		self.reflector = Entry(self.sideframe, bd=3, width=10)
 		self.reflector.pack(side=TOP, padx=6)
 
+
+		self.reflector.insert(0, Security().get_reflector())
+
 		self.btnclose = Button(self.toolframe, text="Close", command=self.destroy_reflector)
 		self.btnclose.pack(side=LEFT, pady=5, padx=5)
-		self.btnsave = Button(self.toolframe, text="Save")
+		self.btnsave = Button(self.toolframe, text="Save", command=self.savebtn_reflector)
 		self.btnsave.pack(side=LEFT, pady=5, padx=5)
 
 
@@ -99,3 +108,11 @@ class Window(object):
 
 	def destroy(self):
 		self.window.destroy()
+
+	def savebtn_reflector(self):
+		Security().save_reflector(self.reflector.get())
+		self.destroy_reflector()
+
+	def savebtn_rotors(self):
+		Security().save_rotors(self.idrotor1.get(), self.idrotor2.get(), self.idrotor3.get())
+		self.destroy_rotor()
