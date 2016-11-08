@@ -1,9 +1,11 @@
 # -*- coding: latin1 -*-
 from window import *
+from database import *
 
 class Init(object):
 
 	def __init__(self):
+		Database()
 		Window()
 
 	def main(self):
