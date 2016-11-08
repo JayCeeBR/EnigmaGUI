@@ -1,3 +1,4 @@
+# -*- coding: latin1 -*-
 import sqlite3
 
 class Database(object):
@@ -9,7 +10,7 @@ class Database(object):
 		self.cursor.execute(str(query))
 		query = 'CREATE TABLE IF NOT EXISTS reflector (id integer primary key, reflectorid varchar(100),base varchar(100))'
 		self.cursor.execute(str(query))
-		
+
 	def execute(self, query):
 		try:
 			self.cursor.execute(str(query))
