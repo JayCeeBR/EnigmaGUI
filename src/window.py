@@ -21,9 +21,26 @@ class Window(object):
 		self.settings.add_separator()
 		self.settings.add_command(label="Exit", command=self.destroy)
 
+		self.textin = Text(self.window, width=98, height=34, bd=3)
+		self.textin.pack(side=TOP)
+
+		self.toolbox = Frame(self.window)
+		self.toolbox.pack(side=BOTTOM)
+
+		self.btnencode = Button(self.toolbox, text="Encode", command=self.encode)
+		self.btnencode.pack(side=LEFT, pady=10, padx=10)
+
+		self.btndecode = Button(self.toolbox, text="Decode", command=self.decode)
+		self.btndecode.pack(side=LEFT, pady=5, padx=30)
 
 		self.window.config(menu=self.menubar)
 		self.window.mainloop()
+
+	def encode(self):
+		pass
+
+	def decode(self):
+		pass
 
 	def create_rotors(self):
 		self.winrotor = Tk()

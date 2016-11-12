@@ -2,6 +2,9 @@
 
 Engima M1 Machine Graphics
 
+
+For more information go to [Wiki](https://github.com/sfsbr/EnigmaGUI/wiki).
+
 ##API Reference
 
 -	Python 3.5
