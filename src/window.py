@@ -34,7 +34,7 @@ class Window(object):
 		self.window.mainloop()
 
 	def encode(self):
-		pass
+		Security().get_machine()
 
 	def create_rotors(self):
 		self.winrotor = Tk()

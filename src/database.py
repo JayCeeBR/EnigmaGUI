@@ -17,6 +17,15 @@ class Database(object):
 		except Exception as e:
 			print("{0}".format(e))
 
+	def return_value(self, query):
+		try:
+			self.cursor.execute(str(query))
+			output = self.cursor.fetchall()
+			for row in output:
+				return row['base'] 
+		except Exception as e:
+			print("{0}".format(e))
+
 	def show(self, query):
 		try:
 			self.cursor.execute(str(query))

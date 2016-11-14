@@ -3,12 +3,29 @@ from database import *
 import string
 import sys
 from enigma import *
+import json
 
 class Security(object):
 
 	reflector = []
 	rotors = []
 	plugboard = []
+
+	def load_settings(self):
+		try:
+			with open('settings.json') as jdata:
+				data = json.load(jdata)
+				for out in data['Settings']:
+					reflector.append(str(out['reflector']))
+					rotors.append(str(out['rotor1']))
+					rotors.append(str(out['rotor2']))
+					rotors.append(str(out['rotor3']))
+					plugboard.append(str(out['pair1-1']))
+					plugboard.append(str(out['pair1-2']))
+					plugboard.append(str(out['pair2-1']))
+					plugboard.append(str(out['pair2-2']))
+		except Exception as e:
+			print("{0}".format(e))
 
 	def save_reflector(self, option):
 		self.reflector.append(str(option))
@@ -53,3 +70,12 @@ class Security(object):
 		self.plugboard.append(str(p2))
 		self.plugboard.append(str(p3))
 		self.plugboard.append(str(p4))
+
+
+	def get_machine(self):
+		try:
+			rotor1 = Database().return_value("SELECT base FROM rotors WHERE rotorid = '{0}'".format(self.rotors[0]))
+			print(rotor1)
+
+		except Exception as e:
+			print("{0}".format(e))

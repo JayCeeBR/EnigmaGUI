@@ -1,10 +1,12 @@
 # -*- coding: latin1 -*-
 from window import *
 from database import *
+from security import *
 
 class Init(object):
 
 	def __init__(self):
+		Security().load_settings()
 		Database()
 		Window()
 
