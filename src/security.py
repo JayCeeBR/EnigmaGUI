@@ -8,6 +8,7 @@ class Security(object):
 
 	reflector = []
 	rotors = []
+	plugboard = []
 
 	def save_reflector(self, option):
 		self.reflector.append(str(option))
@@ -33,3 +34,22 @@ class Security(object):
 				return self.rotors[2]
 		except Exception as e:
 			return "null"
+
+	def get_plugboard(self, option):
+		try:
+			if option == 1:
+				return self.plugboard[0]
+			elif option == 2:
+				return self.plugboard[1]
+			elif option == 3:
+				return self.plugboard[2]
+			elif option == 4:
+				return self.plugboard[3]
+		except Exception as e:
+			return "null"
+
+	def save_plugboard(self, p1, p2, p3, p4):
+		self.plugboard.append(str(p1))
+		self.plugboard.append(str(p2))
+		self.plugboard.append(str(p3))
+		self.plugboard.append(str(p4))

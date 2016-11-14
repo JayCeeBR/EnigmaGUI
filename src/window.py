@@ -76,7 +76,46 @@ class Window(object):
 		self.winrotor.mainloop()
 
 	def create_plugboard(self):
-		pass
+		self.plugboard = Tk()
+		self.plugboard.minsize(280, 180)
+		self.plugboard.resizable(0,0)
+		self.plugboard.maxsize(280, 180)
+		self.plugboard.title("Configure Plugboard")
+
+		self.plugframe = Frame(self.plugboard)
+		self.plugframe.pack(side=TOP)
+
+		self.plugframe2 = Frame(self.plugboard)
+		self.plugframe2.pack(side=BOTTOM)
+
+		self.labelplug1 = Label(self.plugframe, text="Pair 1")
+		self.labelplug1.pack(side=TOP)
+
+		self.plugpair1 = Entry(self.plugframe, bd=3, width=10)
+		self.plugpair1.pack(side=TOP, padx=6)
+		self.plugpair11 = Entry(self.plugframe, bd=3, width=10)
+		self.plugpair11.pack(side=TOP, padx=6)
+
+		self.labelplug2 = Label(self.plugframe, text="Pair 2")
+		self.labelplug2.pack(side=TOP)
+
+		self.plugpair2 = Entry(self.plugframe, bd=3, width=10)
+		self.plugpair2.pack(side=TOP, padx=6)
+		self.plugpair22 = Entry(self.plugframe, bd=3, width=10)
+		self.plugpair22.pack(side=TOP, padx=6)
+
+		self.btnclose2 = Button(self.plugframe2, text="Close", command=self.destroy_plugboard)
+		self.btnclose2.pack(side=LEFT, pady=5, padx=5)
+
+		self.btnsave2 = Button(self.plugframe2, text="Save", command=self.savebtn_plugboard)
+		self.btnsave2.pack(side=LEFT, pady=5, padx=5)
+
+		self.plugpair1.insert(0, Security().get_plugboard(1))
+		self.plugpair11.insert(0, Security().get_plugboard(2))
+		self.plugpair2.insert(0, Security().get_plugboard(3))
+		self.plugpair22.insert(0, Security().get_plugboard(3))
+
+		self.plugboard.mainloop()
 
 	def create_reflector(self):
 		self.winreflector = Tk()
@@ -112,7 +151,7 @@ class Window(object):
 		self.winrotor.destroy()
 
 	def destroy_plugboard(self):
-		pass
+		self.plugboard.destroy()
 
 	def destroy_reflector(self):
 		self.winreflector.destroy()
@@ -127,3 +166,7 @@ class Window(object):
 	def savebtn_rotors(self):
 		Security().save_rotors(self.idrotor1.get(), self.idrotor2.get(), self.idrotor3.get())
 		self.destroy_rotor()
+
+	def savebtn_plugboard(self):
+		Security().save_plugboard(self.plugpair1.get(), self.plugpair11.get(), self.plugpair2.get(), self.plugpair22.get())
+		self.destroy_plugboard()
