@@ -1,14 +1,14 @@
 {
 	"Settings":[
 		{
-			"reflector": "null",
-			"rotor1": "null",
-			"rotor2": "null",
-			"rotor3": "null",
-			"pair1-1": "null",
-			"pair1-2": "null",
-			"pair2-1": "null",
-			"pair2-2": "null"
+			"reflector": "B",
+			"rotor1": "I",
+			"rotor2": "II",
+			"rotor3": "III",
+			"pair1-1": "A",
+			"pair1-2": "C",
+			"pair2-1": "F",
+			"pair2-2": "B"
 		}
 	]
 }

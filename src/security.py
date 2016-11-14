@@ -11,23 +11,31 @@ class Security(object):
 	rotors = []
 	plugboard = []
 
+
+	rotor1 = ""
+	rotor2 = ""
+	rotor3 = ""
+
+	reflector = ""
+
 	def load_settings(self):
 		try:
 			with open('settings.json') as jdata:
 				data = json.load(jdata)
 				for out in data['Settings']:
-					reflector.append(str(out['reflector']))
-					rotors.append(str(out['rotor1']))
-					rotors.append(str(out['rotor2']))
-					rotors.append(str(out['rotor3']))
-					plugboard.append(str(out['pair1-1']))
-					plugboard.append(str(out['pair1-2']))
-					plugboard.append(str(out['pair2-1']))
-					plugboard.append(str(out['pair2-2']))
+					self.reflector.append(str(out['reflector']))
+					self.rotors.append(str(out['rotor1']))
+					self.rotors.append(str(out['rotor2']))
+					self.rotors.append(str(out['rotor3']))
+					self.plugboard.append(str(out['pair1-1']))
+					self.plugboard.append(str(out['pair1-2']))
+					self.plugboard.append(str(out['pair2-1']))
+					self.plugboard.append(str(out['pair2-2']))
 		except Exception as e:
 			print("{0}".format(e))
 
 	def save_reflector(self, option):
+		self.reflector.clear()
 		self.reflector.append(str(option))
 
 	def get_reflector(self):
@@ -37,6 +45,7 @@ class Security(object):
 			return "null"
 
 	def save_rotors(self, option1, option2, option3):
+		self.rotors.clear()
 		self.rotors.append(str(option1))
 		self.rotors.append(str(option2))
 		self.rotors.append(str(option3))
@@ -66,6 +75,7 @@ class Security(object):
 			return "null"
 
 	def save_plugboard(self, p1, p2, p3, p4):
+		self.plugboard.clear()
 		self.plugboard.append(str(p1))
 		self.plugboard.append(str(p2))
 		self.plugboard.append(str(p3))
@@ -74,8 +84,9 @@ class Security(object):
 
 	def get_machine(self):
 		try:
-			rotor1 = Database().return_value("SELECT base FROM rotors WHERE rotorid = '{0}'".format(self.rotors[0]))
-			print(rotor1)
-
+			self.rotor1 = Database().return_value("SELECT base FROM rotors WHERE rotorid = '{0}'".format(self.rotors[0]))
+			self.rotor2 = Database().return_value("SELECT base FROM rotors WHERE rotorid = '{0}'".format(self.rotors[1]))
+			self.rotor3 = Database().return_value("SELECT base FROM rotors WHERE rotorid = '{0}'".format(self.rotors[2]))
+			self.reflector = Database().return_value("SELECT base FROM reflector WHERE reflectorid = '{0}'".format(self.reflector[0]))
 		except Exception as e:
 			print("{0}".format(e))

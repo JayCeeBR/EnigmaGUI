@@ -20,9 +20,8 @@ class Database(object):
 	def return_value(self, query):
 		try:
 			self.cursor.execute(str(query))
-			output = self.cursor.fetchall()
-			for row in output:
-				return row['base'] 
+			for output in self.cursor:
+				return output[0]
 		except Exception as e:
 			print("{0}".format(e))
 
