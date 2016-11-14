@@ -1,4 +1,6 @@
 from database import *
+from reflectir import *
+from plugboard import *
 import string
 
 class RotorSchene(object):
@@ -83,3 +85,25 @@ class RotorShifter(object):
 
 	def set_turnover(self, letter):
 		self.turnover = self.rotor_map.letter_to_num(letter)
+
+class Machine(object):
+
+	def __init__(self, rotor1, rotor2, rotor3, reflector, plugboard):
+		self.rotor1 = rotor1
+		self.rotor2 = rotor2
+		self.rotor3 = rotor3
+		self.reflector = reflector
+		self.plugboard = plugboard
+
+	def step_and_flow(self, input):
+		self.rotor3.step()
+		after_pb = self.plugboard.flow(input)
+		phase1 = self.rotor1.flow(self.rotor2.flow(self.rotor3.flow(after_pb)))
+		refl = self.reflector.flow(phase1)
+		phase2 = self.rotor3.reverse_flow(self.rotor2.reverse_flow(self.rotor1.reverse_flow(refl)))
+		final = self.plugboard.reverse_flow(phase2)
+		return final
+
+	def stream(self, input):
+		for input_stream in input:
+			yield self.step_and_flow(input_stream)
