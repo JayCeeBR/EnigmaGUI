@@ -1,6 +1,5 @@
 # -*- coding: latin1 -*-
 from database import *
-from __future__ import print_function
 import string
 import sys
 from enigma import *

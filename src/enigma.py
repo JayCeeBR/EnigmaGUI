@@ -34,7 +34,7 @@ class RotorSchene(object):
 
 	def reverse_map(self, input):
 		reverse = [None] * 26
-		for index in range(len(input))
+		for index in range(len(input)):
 			reverse[input[index]] = index
 		return reverse
 
