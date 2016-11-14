@@ -16,7 +16,7 @@ class Security(object):
 	rotor2 = ""
 	rotor3 = ""
 
-	reflector = ""
+	reflectorthis = ""
 
 	def load_settings(self):
 		try:
@@ -82,11 +82,17 @@ class Security(object):
 		self.plugboard.append(str(p4))
 
 
-	def get_machine(self):
-		try:
-			self.rotor1 = Database().return_value("SELECT base FROM rotors WHERE rotorid = '{0}'".format(self.rotors[0]))
-			self.rotor2 = Database().return_value("SELECT base FROM rotors WHERE rotorid = '{0}'".format(self.rotors[1]))
-			self.rotor3 = Database().return_value("SELECT base FROM rotors WHERE rotorid = '{0}'".format(self.rotors[2]))
-			self.reflector = Database().return_value("SELECT base FROM reflector WHERE reflectorid = '{0}'".format(self.reflector[0]))
-		except Exception as e:
-			print("{0}".format(e))
+	def get_rotor1(self):
+		return Database().return_value("SELECT base FROM rotors WHERE rotorid = '{0}'".format(self.rotors[0]))
+
+	def get_rotor2(self):
+		return Database().return_value("SELECT base FROM rotors WHERE rotorid = '{0}'".format(self.rotors[1]))
+
+	def get_rotor3(self):
+		return Database().return_value("SELECT base FROM rotors WHERE rotorid = '{0}'".format(self.rotors[2]))
+
+	def get_reflector(self):
+		return Database().return_value("SELECT base FROM reflector WHERE reflectorid = '{0}'".format(self.reflector[0]))
+
+	def get_plugboard(self):
+		return self.plugboard	

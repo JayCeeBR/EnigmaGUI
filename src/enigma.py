@@ -1,7 +1,37 @@
 from database import *
 from reflector import *
 from plugboard import *
+from security import *
 import string
+
+class Enigma(object):
+
+	def create_machine(self):
+		rotor_map1 = RotorSchene(Security().get_rotor1())
+		rotor_map2 = RotorSchene(Security().get_rotor2())
+		rotor_map3 = RotorSchene(Security().get_rotor3())
+
+		rotor_shifter1 = RotorShifter(rotor_map1, turnover_letter='Q')
+		rotor_shifter2 = RotorShifter(rotor_map2, next_shifter=rotor_shifter1,turnover_letter='E')
+		rotor_shifter3 = RotorShifter(rotor_map3, next_shifter=rotor_shifter2, turnover_letter='V')
+
+		rotor_shifter2.double_step = True
+
+		reflector = Reflector(Security().get_reflector())
+		plugboard = Plugboard(Security().get_plugboard())
+
+		machine = Machine(rotor1=rotor_shifter1, rotor2=rotor_shifter2, rotor3=rotor_shifter3, reflector=reflector, plugboard=plugboard)
+		return machine
+
+	def clear_line(self, line):
+		line = line.strip()
+		output = []
+		for char in line:
+			char = char.upper()
+			if char in string.ascii_uppercase:
+				output.append(char)
+		return ''.join(output)
+
 
 class RotorSchene(object):
 
@@ -106,3 +136,4 @@ class Machine(object):
 		def stream(self, input):
 				for input_stream in input:
 						yield self.step_and_flow(input_stream)
+

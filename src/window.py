@@ -34,7 +34,12 @@ class Window(object):
 		self.window.mainloop()
 
 	def encode(self):
-		Security().get_machine()
+		machine = Enigma().create_machine()
+		line = textin.get(0)
+		while line:
+			clear = Enigma().clear_line(line)
+			print(clear)
+			print(''.join(list(machine.stream(clear))))
 
 	def create_rotors(self):
 		self.winrotor = Tk()
