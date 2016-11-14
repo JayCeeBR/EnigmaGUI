@@ -7,14 +7,79 @@ class RotorSchene(object):
 		self.map = self.letter_seq_to_num(alpha_seq)
 		self.recv = self.reverse_map(self.map)
 
-	def numsq(self, letter):
+	def letter_to_num(self, letter):
 		return ord(letter) - 65
 
-	def numqs(self, num):
+	def num_to_letter(self, num):
 		return chr(num + 65)
 
-	def lettersq(self, letter_sq):
-		return [self.letter_seq_to_num(1) for 1 in letter_sq]
+	def letter_seq_to_num(self, letter_sq):
+		return [self.letter_to_num(1) for 1 in letter_sq]
 
-	def numletter(self, num_seq):
-		 return ''.join([self.numqs(n) for n in num_seq])
+	def num_seq_to_letter(self, num_seq):
+		 return ''.join([self.num_seq_to_letter(n) for n in num_seq])
+
+	def map_flow(self, a_map, input_letter):
+		input = self.letter_to_num(input_letter)
+		output = a_map[input]
+		return self.num_to_letter(output)
+
+	def flow(self, input_letter):
+		return self.map_flow(self.map, input_letter)
+
+	def reverse_flow(self, input_letter):
+		return self.map_flow(self.recv, input_letter)
+
+	def reverse_map(self, input):
+		reverse = [None] * 26
+		for index in range(len(input))
+			reverse[input[index]] = index
+		return reverse
+
+
+class RotorShifter(object):
+
+	def __init__(self, rotor_map, next_shifter=None, shift_letter='A', turnover_letter='Z'):
+		self.rotor_map= rotor_map
+		self.next_shifter = next_shifter
+		self.shift = rotor_map.letter_to_num(shift_letter)
+		self.tunover = rotor_map.letter_to_num(turnover_letter)
+		self.double_step = False
+ 
+ 	def increment_letter_by_shift(self, letter):
+		num = self.rotor_map.letter_to_num(letter)
+		num = (num + self.shift) % 26
+		return self.rotor_map.num_to_letter(num)
+
+ 	def decrement_letter_by_shift(self, letter):
+		num = self.rotor_map.letter_to_num(letter)
+		num = (num - self.shift) % 26
+		return self.rotor_map.num_to_letter(num)
+
+ 	def flow(self, input_letter):
+		shifted_letter = self.increment_letter_by_shift(input_letter)
+		output_letter = self.rotor_map.flow(shifted_letter)
+		shifted_output = self.decrement_letter_by_shift(output_letter)
+		return shifted_output
+
+	 def reverse_flow(self, input_letter):
+		shifted_letter = self.increment_letter_by_shift(input_letter)
+		output_letter = self.rotor_map.reverse_flow(shifted_letter)
+		return self.decrement_letter_by_shift(output_letter)
+
+	def get_shift(self):
+		return self.rotor_map.num_to_letter(self.shift)
+
+	def set_shift(self, letter):
+		self.shift = self.rotor_map.letter_to_num(letter)
+
+	def step(self):
+		if self.next_shifter and self.shift == self.turnover:
+		self.next_shifter.step()
+		if (self.next_shifter and self.next_shifter.double_step and
+		self.shift == self.turnover + 1):
+		self.next_shifter.step()
+		self.shift = (self.shift + 1) % 26
+
+	def set_turnover(self, letter):
+		self.turnover = self.rotor_map.letter_to_num(letter)
