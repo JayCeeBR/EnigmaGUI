@@ -1,6 +1,6 @@
 from enigma import *
 
-class Plugboard(RotorSchene):
+class Plugboard(object):
 
 	def __init__(self, config):
 		normal_map = string.ascii_uppercase
