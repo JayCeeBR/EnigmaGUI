@@ -5,6 +5,8 @@ Engima M1 Machine Graphics
 
 For more information go to [Wiki](https://github.com/sfsbr/EnigmaGUI/wiki).
 
+Recipes for get default settings and inital database [Recipes](https://github.com/sfsbr/Enigma-Recipes)
+
 ##API Reference
 
 -	Python 3.5

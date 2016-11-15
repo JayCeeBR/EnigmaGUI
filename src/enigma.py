@@ -17,7 +17,7 @@ class Enigma(object):
 
 		rotor_shifter2.double_step = True
 
-		reflector = Reflector(Security().get_reflector())
+		reflector = Reflector(Security().get_reflectorthis())
 		plugboard = Plugboard(Security().get_plugboard())
 
 		machine = Machine(rotor1=rotor_shifter1, rotor2=rotor_shifter2, rotor3=rotor_shifter3, reflector=reflector, plugboard=plugboard)

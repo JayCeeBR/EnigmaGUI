@@ -91,8 +91,5 @@ class Security(object):
 	def get_rotor3(self):
 		return Database().return_value("SELECT base FROM rotors WHERE rotorid = '{0}'".format(self.rotors[2]))
 
-	def get_reflector(self):
+	def get_reflectorthis(self):
 		return Database().return_value("SELECT base FROM reflector WHERE reflectorid = '{0}'".format(self.reflector[0]))
-
-	def get_plugboard(self):
-		return self.plugboard	
